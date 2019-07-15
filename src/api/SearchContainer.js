@@ -58,8 +58,7 @@ class SearchContainer extends React.Component<
                   this.searchAnimatedValue
                 )
               }
-            ],
-            overflow: 'visible'
+            ]
           },
           style
         ]}

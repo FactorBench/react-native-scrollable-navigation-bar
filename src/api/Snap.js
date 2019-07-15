@@ -13,6 +13,11 @@ class Snap extends React.Component<SnapProps> {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Animated.View
           style={{
+            opacity: animatedValue.interpolate({
+              inputRange: [0, snapHeight],
+              outputRange: [1, 0],
+              extrapolate: 'clamp'
+            }),
             transform: [
               {
                 scaleY: animatedValue.interpolate({

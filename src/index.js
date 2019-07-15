@@ -24,7 +24,7 @@ const ImageStatusBar = () => (
 export type NavigationBarProps = {
   title?: string,
   titleStyle?: mixed,
-  backgroundColor?: string,
+  headerBackgroundColor?: string,
   borderColor?: string,
   BackButton: React.ComponentType<BackButtonProps>,
   leftIcons?: ?(React.Element<typeof NavigationBarIcon>[]),
@@ -48,7 +48,7 @@ export type ScrollableNavigationBarProps = {
   ...ScrollableNavigationBarDefaultProps,
   title?: string,
   titleStyle?: mixed,
-  backgroundColor?: string,
+  headerBackgroundColor?: string,
   borderColor?: string,
   leftIcons?: ?(React.Element<typeof NavigationBarIcon>[]),
   rightIcons?: ?(React.Element<typeof NavigationBarIcon>[]),
@@ -127,7 +127,7 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
   renderNavigationBar({
     title,
     titleStyle,
-    backgroundColor,
+    headerBackgroundColor,
     borderColor,
     BackButton,
     leftIcons,
@@ -139,7 +139,7 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
       <NavigationBar
         title={title}
         titleStyle={titleStyle}
-        backgroundColor={backgroundColor}
+        backgroundColor={headerBackgroundColor}
         borderColor={
           transitionPoint !==
           ScrollableNavigationBar.defaultProps.transitionPoint
@@ -159,7 +159,7 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
       titleStyle,
       headerTitle,
       headertitleStyle,
-      backgroundColor,
+      headerBackgroundColor,
       borderColor,
       collapsible,
       stayCollapsed,
@@ -186,7 +186,7 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
           collapsible={collapsible}
           title={headerTitle || title}
           titleStyle={headertitleStyle || titleStyle || imageStyle}
-          backgroundColor={backgroundColor}
+          backgroundColor={headerBackgroundColor}
           borderColor={SnapComponent !== undefined ? undefined : borderColor}
           snapHeight={snapHeight}
           parallax={parallax}
@@ -204,10 +204,10 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
                     leftIcons: bigLeftIcons || leftIcons,
                     rightIcons: bigRightIcons || rightIcons,
                     iconStyle: bigIconStyle || iconStyle || imageStyle,
-                    backgroundColor:
+                    headerBackgroundColor:
                       ImageComponent !== undefined
                         ? 'transparent'
-                        : this.props.backgroundColor
+                        : this.props.headerBackgroundColor
                   })
           }
           ScrolledNavigationBar={
