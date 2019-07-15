@@ -49,7 +49,7 @@ class SearchContainer extends React.Component<
       <Container
         {...this.props}
         scrollEnabled={!searchActive}
-        style={[
+        containerStyle={[
           {
             transform: [
               {

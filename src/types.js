@@ -26,6 +26,7 @@ export type ContainerProps = {|
   afterTransitionPoint?: () => void,
   beforeTransitionPoint?: () => void,
   style?: any,
+  containerStyle?: mixed,
   scrollEnabled?: boolean
 |};
 
