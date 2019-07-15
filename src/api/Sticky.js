@@ -11,7 +11,8 @@ class Sticky extends React.Component<StickyProps> {
     collapsible: false,
     stayCollapsed: false,
     transitionPoint: NAVIGATION_BAR_HEIGHT,
-    navigationBarHeight: NAVIGATION_BAR_HEIGHT
+    navigationBarHeight: NAVIGATION_BAR_HEIGHT,
+    height: 0
   };
 
   render() {
@@ -22,11 +23,16 @@ class Sticky extends React.Component<StickyProps> {
       stayCollapsed,
       transitionPoint,
       animatedValue,
-      navigationBarHeight
+      navigationBarHeight,
+      height
     }: StickyProps = this.props;
     return (
       <React.Fragment>
-        <Collapsible active={collapsible} stayCollapsed={stayCollapsed}>
+        <Collapsible
+          active={collapsible}
+          stayCollapsed={stayCollapsed}
+          height={height}
+        >
           <Animated.View
             pointerEvents="box-none"
             style={[

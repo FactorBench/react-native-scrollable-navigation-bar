@@ -6,6 +6,7 @@ class StickyTitleNavigationBar extends React.Component {
   render() {
     return (
       <MainTitleNavigationBar
+        stickyHeight={50}
         StickyComponent={() => (
           <View style={{ backgroundColor: 'red', height: 50 }} />
         )}

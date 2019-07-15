@@ -42,27 +42,26 @@ class SearchContainer extends React.Component<
   }
 
   render() {
-    const { children, style, headerHeight } = this.props;
+    const { children, style, headerHeight, contentContainerStyle } = this.props;
     const { searchActive } = this.state;
+    const translateStyle = {
+      transform: [
+        {
+          translateY: Animated.multiply(
+            STATUS_BAR_HEIGHT - headerHeight,
+            this.searchAnimatedValue
+          )
+        }
+      ]
+    };
+
+    const customStyle =
+      Platform.OS === 'ios'
+        ? { style: [translateStyle, style] }
+        : { contentContainerStyle: [translateStyle, contentContainerStyle] };
 
     return (
-      <Container
-        {...this.props}
-        scrollEnabled={!searchActive}
-        containerStyle={[
-          {
-            transform: [
-              {
-                translateY: Animated.multiply(
-                  STATUS_BAR_HEIGHT - headerHeight,
-                  this.searchAnimatedValue
-                )
-              }
-            ]
-          },
-          style
-        ]}
-      >
+      <Container {...this.props} scrollEnabled={!searchActive} {...customStyle}>
         <View>
           <Animated.View
             pointerEvents="none"

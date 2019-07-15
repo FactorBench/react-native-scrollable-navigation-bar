@@ -35,6 +35,7 @@ class NavigationBarContainer extends React.Component<NavigationBarContainerProps
           active={collapsible}
           stayCollapsed={stayCollapsed}
           style={{ zIndex: 10 }}
+          height={navigationBarHeight}
         >
           <Animated.View
             pointerEvents={pointerEvents}

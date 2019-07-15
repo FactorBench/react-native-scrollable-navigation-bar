@@ -26,7 +26,7 @@ export type ContainerProps = {|
   afterTransitionPoint?: () => void,
   beforeTransitionPoint?: () => void,
   style?: any,
-  containerStyle?: mixed,
+  contentContainerStyle?: mixed,
   scrollEnabled?: boolean
 |};
 
@@ -84,6 +84,7 @@ export type StickyProps = {
   animatedValue: Animated.Value,
   transitionPoint: number,
   navigationBarHeight: number,
+  height: number,
   collapsible?: boolean,
   stayCollapsed?: boolean,
   children?: React.Node,
@@ -114,6 +115,7 @@ export type NavigationBarContainerProps = {
 
 export type CollapsibleProps = {
   navigationBarHeight: number,
+  height: number,
   transitionPoint: number,
   animatedValue: Animated.Value,
   children?: React.Node,
@@ -186,6 +188,7 @@ export type HeaderForegroundProps = {
 };
 
 export type HeaderBorderProps = {
+  navigationBarHeight: number,
   borderColor?: string,
   collapsible?: boolean,
   stayCollapsed?: boolean

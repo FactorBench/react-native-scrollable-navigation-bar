@@ -24,7 +24,11 @@ class StatusBarComponent extends React.Component<StatusBarComponentProps> {
             height: STATUS_BAR_HEIGHT
           }}
         />
-        <StatusBar {...this.props} />
+        <StatusBar
+          {...this.props}
+          translucent
+          backgroundColor="transparent"
+        />
       </React.Fragment>
     );
   }

@@ -96,7 +96,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
       transitionPoint,
       style,
       snapHeight,
-      containerStyle
+      contentContainerStyle
     } = this.props;
     return (
       <Context.Provider
@@ -112,34 +112,33 @@ class Container extends React.Component<ContainerProps, ContainerState> {
         }}
       >
         <StatusBar />
-        <Animated.View style={[{ flex: 1 }, containerStyle]}>
-          <ScrollComponent
-            nestedScrollEnabled
-            scrollEventThrottle={1}
-            snapToOffsets={[snapHeight, transitionPoint - navigationBarHeight]}
-            snapToEnd={false}
-            snapToStart
-            decelerationRate={0.994}
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
-              {
-                listener: this.scrollListener.bind(this),
-                useNativeDriver: true
-              }
-            )}
-            ListHeaderComponent={() => (
-              <Header animatedValue={this.animatedValue} />
-            )}
-            ref={component => {
-              this.component = component;
-            }}
-            style={style}
-            {...this.props}
-          >
+        <ScrollComponent
+          nestedScrollEnabled
+          scrollEventThrottle={1}
+          snapToOffsets={[snapHeight, transitionPoint - navigationBarHeight]}
+          snapToEnd={false}
+          snapToStart
+          decelerationRate={0.994}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
+            {
+              listener: this.scrollListener.bind(this),
+              useNativeDriver: true
+            }
+          )}
+          ListHeaderComponent={() => (
             <Header animatedValue={this.animatedValue} />
-            {children}
-          </ScrollComponent>
-        </Animated.View>
+          )}
+          ref={component => {
+            this.component = component;
+          }}
+          contentContainerStyle={contentContainerStyle}
+          style={style}
+          {...this.props}
+        >
+          <Header animatedValue={this.animatedValue} />
+          {children}
+        </ScrollComponent>
       </Context.Provider>
     );
   }

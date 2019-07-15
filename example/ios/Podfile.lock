@@ -1,6 +1,14 @@
 PODS:
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
+  - FBLazyVector (1000.0.0)
+  - FBReactNativeSpec (1000.0.0):
+    - Folly (= 2018.10.22.00)
+    - RCTRequired (= 1000.0.0)
+    - RCTTypeSafety (= 1000.0.0)
+    - React-Core (= 1000.0.0)
+    - React-jsi (= 1000.0.0)
+    - ReactCommon/turbomodule/core (= 1000.0.0)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
@@ -11,6 +19,12 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - RCTRequired (1000.0.0)
+  - RCTTypeSafety (1000.0.0):
+    - FBLazyVector (= 1000.0.0)
+    - Folly (= 2018.10.22.00)
+    - RCTRequired (= 1000.0.0)
+    - React-Core (= 1000.0.0)
   - React (1000.0.0):
     - React-Core (= 1000.0.0)
     - React-DevSupport (= 1000.0.0)
@@ -32,6 +46,13 @@ PODS:
     - React-jsi (= 1000.0.0)
     - React-jsiexecutor (= 1000.0.0)
     - yoga (= 1000.0.0.React)
+  - React-Core/CxxBridge (1000.0.0):
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-cxxreact (= 1000.0.0)
+    - React-jsi (= 1000.0.0)
+    - React-jsiexecutor (= 1000.0.0)
+    - yoga (= 1000.0.0.React)
   - React-Core/Default (1000.0.0):
     - Folly (= 2018.10.22.00)
     - glog
@@ -39,6 +60,10 @@ PODS:
     - React-jsi (= 1000.0.0)
     - React-jsiexecutor (= 1000.0.0)
     - yoga (= 1000.0.0.React)
+  - React-CoreModules (1000.0.0):
+    - FBReactNativeSpec (= 1000.0.0)
+    - Folly (= 2018.10.22.00)
+    - React-Core (= 1000.0.0)
   - React-cxxreact (1000.0.0):
     - boost-for-react-native (= 1.63.0)
     - DoubleConversion
@@ -89,6 +114,19 @@ PODS:
     - React-Core (= 1000.0.0)
   - React-RCTWebSocket (1000.0.0):
     - React-Core (= 1000.0.0)
+  - ReactCommon/jscallinvoker (1000.0.0):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-cxxreact (= 1000.0.0)
+  - ReactCommon/turbomodule/core (1000.0.0):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-Core/CxxBridge (= 1000.0.0)
+    - React-cxxreact (= 1000.0.0)
+    - React-jsi (= 1000.0.0)
+    - ReactCommon/jscallinvoker (= 1000.0.0)
   - RNGestureHandler (1.3.0):
     - React
   - RNScreens (1.0.0-alpha.23):
@@ -99,10 +137,15 @@ PODS:
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
+  - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
+  - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
   - React-Core (from `../node_modules/react-native/React`)
+  - React-CoreModules (from `../node_modules/react-native/React/CoreModules`)
   - React-cxxreact (from `../node_modules/react-native/ReactCommon/cxxreact`)
   - React-DevSupport (from `../node_modules/react-native/React`)
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
@@ -118,6 +161,8 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
+  - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
+  - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler/RNGestureHandler.podspec`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -130,14 +175,24 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  FBLazyVector:
+    :path: "../node_modules/react-native/Libraries/FBLazyVector"
+  FBReactNativeSpec:
+    :path: "../node_modules/react-native/Libraries/FBReactNativeSpec"
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  RCTRequired:
+    :path: "../node_modules/react-native/Libraries/RCTRequired"
+  RCTTypeSafety:
+    :path: "../node_modules/react-native/Libraries/TypeSafety"
   React:
     :path: "../node_modules/react-native/"
   React-Core:
     :path: "../node_modules/react-native/React"
+  React-CoreModules:
+    :path: "../node_modules/react-native/React/CoreModules"
   React-cxxreact:
     :path: "../node_modules/react-native/ReactCommon/cxxreact"
   React-DevSupport:
@@ -168,6 +223,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   React-RCTWebSocket:
     :path: "../node_modules/react-native/Libraries/WebSocket"
+  ReactCommon:
+    :path: "../node_modules/react-native/ReactCommon"
   RNGestureHandler:
     :podspec: "../node_modules/react-native-gesture-handler/RNGestureHandler.podspec"
   RNScreens:
@@ -180,30 +237,36 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  FBLazyVector: 6e9b562c0b2b279474945cf4d6df30d2baff24b3
+  FBReactNativeSpec: 4a78051e69128476b008e08452735b0c100da8d0
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  React: 18f0a14e2b85dc8dfe942dc68295507579df57e1
-  React-Core: f052b389f78b4c0adbbaeee9060096230ed2de30
-  React-cxxreact: 0b26b0382ceae25cb1c10a9b1e419f24a790ac22
-  React-DevSupport: 158b51d849d66988a9b8a4ce2389f54590e6c23d
-  React-jsi: 660a8ea518576572b65ef8f557ba55d948dfa1e9
-  React-jsiexecutor: ec4a757e8384cb4e65b1d340502f994591101002
-  React-jsinspector: e45ec29a2e3c56b5028806a9484fb12964c67c37
-  React-RCTActionSheet: e046dd51f3042291e3c23e2aa26818ea1382deee
-  React-RCTAnimation: b1383d2b292f2f1b14db41fd457f6c094ca53612
-  React-RCTBlob: b8559a84aa72fc1ab8bab485d22ec82a0c5e1a98
-  React-RCTImage: 240e586418c4ecd378838754401ffef28d184947
-  React-RCTLinking: 5078f90166dce67533d907e82530a806039eb074
-  React-RCTNetwork: 5c27f651e24e4efd58d6e9f059886ecd2a265785
-  React-RCTSettings: e43e86a33e1cb8decedd161cf12dc7f7637a6cfe
-  React-RCTText: efaa3e90f1a3f27f38cf5fb2486a189aeee018a3
-  React-RCTVibration: ae8d3598d038dd9efc1be4e93227e5fd42f2c7c6
-  React-RCTWebSocket: e89206c4dd89dae0f215e5b2bbc80f9044d0add0
+  RCTRequired: 5116793120cd1c209d0bce92f457e1f9d7da9bfd
+  RCTTypeSafety: b99ebaec775e07153ef92ba2a56460f54ad1b444
+  React: 79783d891c9870aee12c123fb2de70b6afd97f62
+  React-Core: 8928b6b66881dd06e9baa3938a747a276405126c
+  React-CoreModules: ac5bd611fc166e290ed5f4834978852ffb3f1c52
+  React-cxxreact: e644283ec968edef4c772b519299de90fd01b46f
+  React-DevSupport: f75c1ca33b415ffe694676e19fe4208b6cb5dbd3
+  React-jsi: 7aa8978ee90ab1a922c8db379d1278de32bd737d
+  React-jsiexecutor: ad09b8373700d5e2c951237d878d3e193657648c
+  React-jsinspector: 701ec9e7c1b319de2e19ee9deb76a7d1dba34f27
+  React-RCTActionSheet: 43df6ef66ca161e7001de0d29a7130b1408a571b
+  React-RCTAnimation: aca637fd6e1fe99f0c1af2154d52a85fe4d8d06c
+  React-RCTBlob: 6c111e5bae57097319e6c3a34ea6f1b95d8d1a69
+  React-RCTImage: 387cf233af914026d6007ec0a251dcf4f710f8ce
+  React-RCTLinking: ec0449ef4639df5d925fc0c20cf18733a6ecc9d7
+  React-RCTNetwork: e869e1849510d367659b63c4bbbf6a69a3c11890
+  React-RCTSettings: b5034d21fc30251fedb125ce4a0ad28fb3a147c7
+  React-RCTText: 21050a0bc0fc9d46f396b005f3af5163f0e2b6f5
+  React-RCTVibration: a0c087495a75dc42f80dba843532d91fea182223
+  React-RCTWebSocket: c9c2785368f78ebc9dd33174e0df1edd37fbc62c
+  ReactCommon: 7db1772bf0b8e150488a8058ea778ba7b49397ac
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
-  yoga: e45901e4acdd1d240107579bc5cd0763d4e46a07
+  yoga: a414e0c50cc7eae64da165764b8cdccaaecd55da
 
-PODFILE CHECKSUM: 1b2684bf1490cefdb13722bd1fea2beef0ac0193
+PODFILE CHECKSUM: f76c3eebbea822ffb76bf89c7a56ecc93444f85c
 
 COCOAPODS: 1.7.3

@@ -9,7 +9,8 @@ class Collapsible extends React.Component<CollapsibleProps> {
   static defaultProps = {
     active: true,
     stayCollapsed: false,
-    style: {}
+    style: {},
+    height: 0
   };
 
   render() {
@@ -18,6 +19,7 @@ class Collapsible extends React.Component<CollapsibleProps> {
       style,
       active,
       navigationBarHeight,
+      height,
       animatedValue,
       transitionPoint,
       stayCollapsed
@@ -45,7 +47,7 @@ class Collapsible extends React.Component<CollapsibleProps> {
             extrapolateLeft: 'clamp'
           }),
           0,
-          navigationBarHeight - STATUS_BAR_HEIGHT
+          height
         ),
         -1
       );
@@ -54,6 +56,7 @@ class Collapsible extends React.Component<CollapsibleProps> {
       <Animated.View
         pointerEvents="box-none"
         {...this.props}
+        height={undefined}
         style={[
           {
             zIndex: 1,

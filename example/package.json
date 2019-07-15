@@ -11,10 +11,10 @@
   "dependencies": {
     "react": "16.8.6",
     "react-native": "zobeirhamid/react-native#release/custom-version",
+    "react-native-scrollable-navigation-bar": "zobeirhamid/react-native-scrollable-navigation-bar#experimental",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.3.0",
     "react-native-screens": "^1.0.0-alpha.23",
-    "react-native-scrollable-navigation-bar": "zobeirhamid/react-native-scrollable-navigation-bar#experimental",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^3.11.0"
   },

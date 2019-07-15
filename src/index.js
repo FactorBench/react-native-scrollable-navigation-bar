@@ -41,7 +41,8 @@ export type ScrollableNavigationBarDefaultProps = {|
   >,
   snapHeight: number,
   transitionPoint: number,
-  BackButton: React.ComponentType<BackButtonProps>
+  BackButton: React.ComponentType<BackButtonProps>,
+  stickyHeight: number
 |};
 
 export type ScrollableNavigationBarProps = {
@@ -90,7 +91,8 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
     BackButton: () => null,
     ContainerComponent: Container,
     snapHeight: 0,
-    transitionPoint: NAVIGATION_BAR_HEIGHT
+    transitionPoint: NAVIGATION_BAR_HEIGHT,
+    stickyHeight: 0
   };
 
   getContainerNode() {
@@ -238,7 +240,8 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
       afterTransitionPoint,
       ImageComponent,
       ScrollComponent,
-      animatedValue
+      animatedValue,
+      stickyHeight
     } = this.props;
     return (
       <ContainerComponent
@@ -260,6 +263,7 @@ class ScrollableNavigationBar extends React.Component<ScrollableNavigationBarPro
             <Sticky
               collapsible={stickyCollapsible}
               stayCollapsed={stayCollapsed}
+              height={stickyHeight}
             >
               {StickyComponent !== undefined && <StickyComponent />}
             </Sticky>
