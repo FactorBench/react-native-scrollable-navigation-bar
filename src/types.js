@@ -107,7 +107,7 @@ export type NavigationBarContainerProps = {
   children?: React.Node,
   collapsible?: boolean,
   stayCollapsed?: boolean,
-  navigationBarHeight?: number,
+  navigationBarHeight: number,
   translucent?: boolean,
   animatedValue: Animated.Value,
   pointerEvents?: string

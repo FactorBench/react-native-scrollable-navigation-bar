@@ -9,7 +9,7 @@ import type { NavigationBarContainerProps } from '../types';
 class NavigationBarContainer extends React.Component<NavigationBarContainerProps> {
   static defaultProps = {
     backgroundColor: 'transparent',
-    navigationBarHeight: NAVIGATION_BAR_HEIGHT - STATUS_BAR_HEIGHT,
+    navigationBarHeight: NAVIGATION_BAR_HEIGHT,
     collapsible: false,
     stayCollapsed: false,
     translucent: false,
@@ -35,7 +35,7 @@ class NavigationBarContainer extends React.Component<NavigationBarContainerProps
           active={collapsible}
           stayCollapsed={stayCollapsed}
           style={{ zIndex: 10 }}
-          height={navigationBarHeight}
+          height={navigationBarHeight - STATUS_BAR_HEIGHT}
         >
           <Animated.View
             pointerEvents={pointerEvents}
