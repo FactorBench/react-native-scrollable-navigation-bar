@@ -3,13 +3,13 @@ import * as React from 'react';
 import { Animated, View } from 'react-native';
 import Collapsible from './Collapsible';
 import { ContextConsumer } from './Context';
-import { NAVIGATION_BAR_HEIGHT } from '../constants';
+import { NAVIGATION_BAR_HEIGHT, STATUS_BAR_HEIGHT } from '../constants';
 import type { NavigationBarContainerProps } from '../types';
 
 class NavigationBarContainer extends React.Component<NavigationBarContainerProps> {
   static defaultProps = {
     backgroundColor: 'transparent',
-    navigationBarHeight: NAVIGATION_BAR_HEIGHT,
+    navigationBarHeight: NAVIGATION_BAR_HEIGHT - STATUS_BAR_HEIGHT,
     collapsible: false,
     stayCollapsed: false,
     translucent: false,
