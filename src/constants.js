@@ -15,7 +15,7 @@ function isIphoneX() {
 
 export const STATUS_BAR_HEIGHT: number =
   Platform.OS === 'ios' ? (isIphoneX() ? 44 : 20) : (StatusBar.currentHeight || 0);
-export const NAVIGATION_BAR_HEIGHT: number = 60 + STATUS_BAR_HEIGHT;
+export const NAVIGATION_BAR_HEIGHT: number = (Platform.OS === 'ios' ? 44 : 56) + STATUS_BAR_HEIGHT;
 
 export default {
     STATUS_BAR_HEIGHT,
