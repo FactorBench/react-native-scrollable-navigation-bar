@@ -1,21 +1,35 @@
 {
-  "name": "react-native-scrollable-navigation-bar",
-  "version": "0.10.0",
-  "description": "Scrollable Navigation Bar for React Native",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "flow": "flow"
-  },
-  "repository": {
+  "_from": "git+https://github.com/FactorBench/react-native-scrollable-navigation-bar.git",
+  "_id": "react-native-scrollable-navigation-bar@0.10.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/react-native-scrollable-navigation-bar",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "git@github.com:zobeirhamid/react-native-scrollable-navigation-bar.git"
+    "raw": "react-native-scrollable-navigation-bar@git+https://github.com/FactorBench/react-native-scrollable-navigation-bar.git",
+    "name": "react-native-scrollable-navigation-bar",
+    "escapedName": "react-native-scrollable-navigation-bar",
+    "rawSpec": "git+https://github.com/FactorBench/react-native-scrollable-navigation-bar.git",
+    "saveSpec": "git+https://github.com/FactorBench/react-native-scrollable-navigation-bar.git",
+    "fetchSpec": "https://github.com/FactorBench/react-native-scrollable-navigation-bar.git",
+    "gitCommittish": null
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-native-vector-icons": "*"
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/FactorBench/react-native-scrollable-navigation-bar.git#cb95bc190d5643f72ce54fd5745050e71d8c293e",
+  "_spec": "react-native-scrollable-navigation-bar@git+https://github.com/FactorBench/react-native-scrollable-navigation-bar.git",
+  "_where": "/Users/SerTony/ReactWorkspace/TON-Bank",
+  "author": {
+    "name": "Zobeir Hamid"
   },
+  "bugs": {
+    "url": "https://github.com/zobeirhamid/react-native-scrollable-navigation-bar/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Scrollable Navigation Bar for React Native",
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-decorators": "^7.2.3",
@@ -35,11 +49,11 @@
     "eslint-plugin-react-native": "^3.5.0",
     "flow-bin": "^0.86.0",
     "metro-react-native-babel-preset": "^0.54.1",
-    "react-native-vector-icons": "^6.5.0",
     "prettier": "^1.15.2",
     "prettier-eslint": "^8.8.2",
     "react-native": "~0.60.0"
   },
+  "homepage": "https://github.com/zobeirhamid/react-native-scrollable-navgation-bar",
   "keywords": [
     "react-native",
     "scrollable",
@@ -47,10 +61,20 @@
     "bar",
     "component"
   ],
-  "author": "Zobeir Hamid",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/zobeirhamid/react-native-scrollable-navigation-bar/issues"
+  "main": "index.js",
+  "name": "react-native-scrollable-navigation-bar",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   },
-  "homepage": "https://github.com/zobeirhamid/react-native-scrollable-navgation-bar"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zobeirhamid/react-native-scrollable-navigation-bar.git"
+  },
+  "scripts": {
+    "flow": "flow",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.10.0"
 }

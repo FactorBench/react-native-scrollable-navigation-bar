@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import { Animated } from 'react-native';
-import { type IconProps } from 'react-native-vector-icons';
 
 export type StatusBarComponentProps = {
   backgroundColor?: string
@@ -54,19 +53,10 @@ export type NavigationBarTitleProps = {
   titleStyle?: mixed
 };
 
-export type NavigationBarIconProps = {
-  name: string,
-  size?: number,
-  style?: mixed,
-  onPress?: Function,
-  IconProvider: React.ComponentType<IconProps<any>>
-};
-
 export type NavigationBarDefaultProps = {|
   navigationBarHeight: number,
-  BackButton: ?React.ComponentType<any>,
-  leftIcons: ?(React.Element<React.ComponentType<NavigationBarIconProps>>[]),
-  rightIcons: ?(React.Element<React.ComponentType<NavigationBarIconProps>>[])
+  headerLeft: ?(React.Element<React.ComponentType<{}>>),
+  headerRight: ?(React.Element<React.ComponentType<{}>>)
 |};
 
 export type NavigationBarProps = {
@@ -76,12 +66,6 @@ export type NavigationBarProps = {
   backgroundColor?: ?string,
   style?: mixed,
   borderColor?: string
-};
-
-export type BackButtonProps = {
-  onPress?: Function,
-  style?: mixed,
-  visible?: boolean
 };
 
 export type StickyProps = {
