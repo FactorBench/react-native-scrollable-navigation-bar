@@ -141,18 +141,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               this.component = component;
                           }}
                           style={[
-                              {
-                                  transform: [
-                                      {
-                                          translateY: this.animatedValue.interpolate({
-                                              inputRange: [0, transitionPoint],
-                                              outputRange: [transitionPoint, 0],
-                                              extrapolate: 'clamp',
-                                          }),
-                                      },
-                                  ],
-                                  // overflow: 'visible'
-                              },
+                              { paddingTop: transitionPoint - this.animatedValue._value },
                               style,
                           ]}
                           ListHeaderComponent={() => (
@@ -164,17 +153,6 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               <Animated.View style={{ height: navigationBarHeight }} />
                           )}
                           contentContainerStyle={[
-                              {
-                                  transform: [
-                                      {
-                                          translateY: 0, /* this.animatedValue.interpolate({
-                                              inputRange: [0, transitionPoint],
-                                              outputRange: [0, transitionPoint],
-                                              extrapolate: 'clamp',
-                                          }), Crashes! */
-                                      },
-                                  ],
-                              },
                               contentContainerStyle,
                           ]}
                           {...this.props}
