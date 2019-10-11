@@ -40,14 +40,14 @@ class Snap extends React.Component<SnapProps> {
                         transform: [
                             {
                                 scaleY: animatedValue.interpolate({
-                                    inputRange: [0, 100],
+                                    inputRange: [0, 96],
                                     outputRange: [1, 0],
                                     extrapolate: 'clamp',
                                 }),
                             },
                         ],
                         opacity: animatedValue.interpolate({
-                            inputRange: [0, 100],
+                            inputRange: [0, 96],
                             outputRange: [1, 0],
                             extrapolate: 'clamp',
                         }),
