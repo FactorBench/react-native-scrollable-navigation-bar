@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Animated } from 'react-native';
+import { Animated, View, Platform } from 'react-native';
 import { type ScrollEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 import { NAVIGATION_BAR_HEIGHT } from '../constants';
 import Context from './Context';
@@ -25,8 +25,9 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   };
 
   state = {
+      shouldEnlarge: false,
       reachedTransitionPoint: false,
-      // position: 0
+      value: 0,
   };
 
   animatedValue: Animated.Value = new Animated.Value(0);
@@ -42,26 +43,81 @@ class Container extends React.Component<ContainerProps, ContainerState> {
           this.animatedValue = animatedValue;
       }
       this.eventHandler = EventHandler();
+      this.scrollHeight = 0;
+      this.contentHeight = 0;
   }
 
   componentDidMount() {
       const { beforeTransitionPoint } = this.props;
-
       if (beforeTransitionPoint !== undefined) beforeTransitionPoint();
+
+      this.startListeningToValue();
   }
 
-  /*
-  getPosition() {
-    const { position } = this.state;
-    return position;
+  componentWillUnmout() {
+      this.stopListeningToValue();
   }
-  */
+
+  // Events
+  onScrollLayout = (e: any) => {
+      if (Platform.OS === 'web') {
+          return;
+      }
+      const { height } = e.nativeEvent.layout;
+      this.scrollHeight = height;
+      this.checkIfNeedToEnlarge();
+  }
+
+  onContentLayout = (e: any) => {
+      if (Platform.OS === 'web') {
+          return;
+      }
+      const { height } = e.nativeEvent.layout;
+      this.contentHeight = height;
+      this.checkIfNeedToEnlarge();
+  }
+
+  // Getters
+  shouldEnlarge() {
+      return this.state.shouldEnlarge;
+  }
+
+  getEnlargedHeight() {
+      const { transitionPoint, navigationBarHeight } = this.props;
+      return this.scrollHeight + (transitionPoint - navigationBarHeight);
+  }
+
+  getValue() {
+      return Platform.OS === 'web' ? this.state.value : this.animatedValue._value;
+  }
 
   getNode() {
       if (this.component && this.component.getNode) {
           return this.component.getNode();
       }
       return this.component;
+  }
+
+  // Processing
+  checkIfNeedToEnlarge() {
+      const shouldEnlarge = this.contentHeight < this.getEnlargedHeight();
+      if (this.shouldEnlarge() !== shouldEnlarge) {
+          this.setState({ shouldEnlarge });
+      }
+  }
+
+  startListeningToValue() {
+      if (Platform.OS === 'web' && this.animatedValue) {
+          this.valueListener = this.animatedValue.addListener(({ value }) => {
+              this.setState({ value });
+          });
+      }
+  }
+
+  stopListeningToValue() {
+      if (Platform.OS === 'web' && this.animatedValue && this.valueListener) {
+          this.animatedValue.removeListener(this.valueListener);
+      }
   }
 
   scrollListener(event: ScrollEvent) {
@@ -73,8 +129,6 @@ class Container extends React.Component<ContainerProps, ContainerState> {
           navigationBarHeight,
       } = this.props;
       const { reachedTransitionPoint } = this.state;
-      // Would force the components to rerender too many times
-      // this.setState({ position: y });
 
       if (!reachedTransitionPoint && y >= transitionPoint - navigationBarHeight) {
           this.setState({ reachedTransitionPoint: true });
@@ -88,6 +142,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
       }
   }
 
+  // Render
   render() {
       const {
           children,
@@ -103,6 +158,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
           containerStyle,
           contentContainerStyle,
       } = this.props;
+      const heightStyle = this.shouldEnlarge() ? { minHeight: this.getEnlargedHeight() } : {};
       return (
           <Animated.View style={[{ flex: 1, overflow: 'hidden' }]}>
               <Context.Provider
@@ -121,6 +177,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                   <Animated.View style={[{ flex: 1 }, containerStyle]}>
                       <Header animatedValue={this.animatedValue} />
                       <ScrollComponent
+                          onLayout={this.onScrollLayout}
                           nestedScrollEnabled
                           scrollEventThrottle={1}
                           snapToOffsets={[
@@ -134,16 +191,11 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
                               {
                                   listener: this.scrollListener.bind(this),
-                                  useNativeDriver: true,
+                                  useNativeDriver: Platform.OS !== 'web',
                               },
                           )}
-                          ref={(component) => {
-                              this.component = component;
-                          }}
-                          style={[
-                              { paddingTop: transitionPoint - this.animatedValue._value },
-                              style,
-                          ]}
+                          ref={(component) => { this.component = component; }}
+                          style={[style, { paddingTop: transitionPoint - this.getValue() }]}
                           ListHeaderComponent={() => (
                               <Animated.View
                                   style={{ height: transitionPoint - navigationBarHeight }}
@@ -152,14 +204,14 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                           ListFooterComponent={() => (
                               <Animated.View style={{ height: navigationBarHeight }} />
                           )}
-                          contentContainerStyle={[
-                              contentContainerStyle,
-                          ]}
+                          contentContainerStyle={[contentContainerStyle, heightStyle]}
                           {...this.props}
                       >
                           <OverlayComponent />
-                          {children}
-                          <Animated.View style={{ height: transitionPoint }} />
+                          <View onLayout={this.onContentLayout}>
+                              {children}
+                          </View>
+                          <View style={{ height: Platform.OS !== 'web' ? transitionPoint : 0 }} />
                       </ScrollComponent>
                   </Animated.View>
               </Context.Provider>
