@@ -64,32 +64,38 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   // Events
   onScrollLayout = (e: any) => {
       const { height } = e.nativeEvent.layout;
-      if (isChrome) {
-          // The height of the ScrollView minus the height of the Scroll Bar
-          // gives the maximum space available to move the scroll bar.
-          // A constant of 10 seems to be a padding/offset between 
-          // the bar and the container
-          this.maxOffset = (this.tmpScrollViewHeight - height) + 10;
-          return;
+      if (Platform.OS === 'web') {
+        if (isChrome) {
+            // The height of the ScrollView minus the height of the Scroll Bar
+            // gives the maximum space available to move the scroll bar.
+            // A constant of 10 seems to be a padding/offset between 
+            // the bar and the container
+            this.maxOffset = (this.tmpScrollViewHeight - height) + 10;
+        }
+        else {
+            // The bouncing animation issue seems to affect only to Chrome browser.
+        }
+        return;
       }
-
-      if (Platform.OS !== 'web') {
-        this.scrollHeight = height;
-        this.checkIfNeedToEnlarge();
-      }
+      
+      this.scrollHeight = height;
+      this.checkIfNeedToEnlarge();
   }
 
   onContentLayout = (e: any) => {
       const { height } = e.nativeEvent.layout;
-      if (isChrome) {
-          this.tmpScrollViewHeight = height;
-          return;
+      if (Platform.OS === 'web') {
+        if (isChrome) {
+            this.tmpScrollViewHeight = height;
+        }
+        else {
+            // The bouncing animation issue seems to affect only to Chrome browser.
+        }
+        return;
       }
 
-      if (Platform.OS !== 'web') {
-        this.contentHeight = height;
-        this.checkIfNeedToEnlarge();
-      }
+      this.contentHeight = height;
+      this.checkIfNeedToEnlarge();
   }
 
   // Getters
@@ -124,7 +130,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   startListeningToValue() {
       if (Platform.OS === 'web' && this.animatedValue) {
           this.valueListener = this.animatedValue.addListener(({ value }) => {
-              const val = Platform.OS === 'web' ? Math.min(value, this.maxOffset) : value;
+              const val = Math.min(value, this.maxOffset);
               this.setState({ value: val });
           });
       }
