@@ -195,7 +195,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               },
                           )}
                           ref={(component) => { this.component = component; }}
-                          style={[style, { paddingTop: transitionPoint - this.getValue() }]}
+                          style={[style, { paddingTop: transitionPoint }]}
                           ListHeaderComponent={() => (
                               <Animated.View
                                   style={{ height: transitionPoint - navigationBarHeight }}
