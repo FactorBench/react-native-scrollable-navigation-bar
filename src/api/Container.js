@@ -46,8 +46,6 @@ class Container extends React.Component<ContainerProps, ContainerState> {
       this.eventHandler = EventHandler();
       this.scrollHeight = 0;
       this.contentHeight = 0;
-      this.tmpScrollViewHeight = 0;
-      this.maxOffset = 0;
   }
 
   componentDidMount() {
@@ -63,37 +61,21 @@ class Container extends React.Component<ContainerProps, ContainerState> {
 
   // Events
   onScrollLayout = (e: any) => {
-      const { height } = e.nativeEvent.layout;
       if (Platform.OS === 'web') {
-        if (isChrome) {
-            // The height of the ScrollView minus the height of the Scroll Bar
-            // gives the maximum space available to move the scroll bar.
-            // A constant of 10 seems to be a padding/offset between 
-            // the bar and the container
-            this.maxOffset = (this.tmpScrollViewHeight - height) + 10;
-        }
-        else {
-            // The bouncing animation issue seems to affect only to Chrome browser.
-        }
         return;
       }
-      
+        
+      const { height } = e.nativeEvent.layout;
       this.scrollHeight = height;
       this.checkIfNeedToEnlarge();
   }
 
   onContentLayout = (e: any) => {
-      const { height } = e.nativeEvent.layout;
       if (Platform.OS === 'web') {
-        if (isChrome) {
-            this.tmpScrollViewHeight = height;
-        }
-        else {
-            // The bouncing animation issue seems to affect only to Chrome browser.
-        }
-        return;
+          return;
       }
-
+        
+      const { height } = e.nativeEvent.layout;
       this.contentHeight = height;
       this.checkIfNeedToEnlarge();
   }
@@ -130,8 +112,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   startListeningToValue() {
       if (Platform.OS === 'web' && this.animatedValue) {
           this.valueListener = this.animatedValue.addListener(({ value }) => {
-              const val = Math.min(value, this.maxOffset);
-              this.setState({ value: val });
+              this.setState({ value });
           });
       }
   }
@@ -217,7 +198,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               },
                           )}
                           ref={(component) => { this.component = component; }}
-                          style={[style, { paddingTop: transitionPoint - this.getValue() }]}
+                          style={[style, { paddingTop: transitionPoint }]}
                           ListHeaderComponent={() => (
                               <Animated.View
                                   style={{ height: transitionPoint - navigationBarHeight }}
