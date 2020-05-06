@@ -61,7 +61,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   // Events
   onScrollLayout = (e: any) => {
       if (Platform.OS === 'web') {
-          return;
+        return;
       }
       const { height } = e.nativeEvent.layout;
       this.scrollHeight = height;
@@ -88,7 +88,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   }
 
   getValue() {
-      return Platform.OS === 'web' ? this.state.value : this.animatedValue._value;
+      return Platform.OS === 'web' ? 0 : this.animatedValue._value;
   }
 
   getNode() {
@@ -195,7 +195,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               },
                           )}
                           ref={(component) => { this.component = component; }}
-                          style={[style, { paddingTop: transitionPoint }]}
+                          style={[style, { paddingTop: transitionPoint - this.getValue() }]}
                           ListHeaderComponent={() => (
                               <Animated.View
                                   style={{ height: transitionPoint - navigationBarHeight }}
