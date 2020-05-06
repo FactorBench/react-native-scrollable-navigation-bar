@@ -28,7 +28,6 @@ class Container extends React.Component<ContainerProps, ContainerState> {
       shouldEnlarge: false,
       reachedTransitionPoint: false,
       value: 0,
-      androidOffset: 0,
   };
 
   animatedValue: Animated.Value = new Animated.Value(0);
@@ -89,7 +88,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
   }
 
   getValue() {
-      return Platform.OS === 'web' ? this.state.value : this.animatedValue._value;
+      return Platform.OS === 'web' ? 0 : this.animatedValue._value;
   }
 
   getNode() {
@@ -130,10 +129,6 @@ class Container extends React.Component<ContainerProps, ContainerState> {
           navigationBarHeight,
       } = this.props;
       const { reachedTransitionPoint } = this.state;
-
-      if(Platform.OS === 'android'){
-          this.setState({androidOffset: y});
-      }
 
       if (!reachedTransitionPoint && y >= transitionPoint - navigationBarHeight) {
           this.setState({ reachedTransitionPoint: true });
@@ -200,7 +195,7 @@ class Container extends React.Component<ContainerProps, ContainerState> {
                               },
                           )}
                           ref={(component) => { this.component = component; }}
-                          style={[style, { paddingTop: transitionPoint - this.state.androidOffset }]}
+                          style={[style, { paddingTop: transitionPoint - this.getValue() }]}
                           ListHeaderComponent={() => (
                               <Animated.View
                                   style={{ height: transitionPoint - navigationBarHeight }}
